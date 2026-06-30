@@ -87,7 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Fulgent Post House is Nairobi's premier cinematic finishing studio — high-end colour grading, look development and mastering for feature films and commercials.",
       },
       { name: "author", content: "Fulgent Post House" },
-      { property: "og:title", content: "Fulgent Post House — Crafting the Final Frame" },
+      { property: "og:title", content: "Fulgent Post House — Cinematic Colour & Finishing, Nairobi" },
       {
         property: "og:description",
         content:
@@ -95,6 +95,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Fulgent Post House — Cinematic Colour & Finishing, Nairobi" },
+      { name: "description", content: "Lumina Studio Design creates premium, cinematic websites for post-production studios." },
+      { property: "og:description", content: "Lumina Studio Design creates premium, cinematic websites for post-production studios." },
+      { name: "twitter:description", content: "Lumina Studio Design creates premium, cinematic websites for post-production studios." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/1fbe157d-8747-46cb-86cb-6978f774a35b/id-preview-0cdcc3cb--00ee47eb-310a-4ce7-a86d-3a09d939b8ed.lovable.app-1782802545727.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/1fbe157d-8747-46cb-86cb-6978f774a35b/id-preview-0cdcc3cb--00ee47eb-310a-4ce7-a86d-3a09d939b8ed.lovable.app-1782802545727.png" },
     ],
     links: [
       {
