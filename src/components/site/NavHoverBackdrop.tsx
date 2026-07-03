@@ -19,7 +19,7 @@ export function NavHoverBackdrop() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-[5] overflow-hidden"
+      className="pointer-events-none fixed inset-0 z-40 overflow-hidden"
     >
       {Object.entries(navHoverImages).map(([key, src]) => (
         <div
