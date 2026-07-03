@@ -1,10 +1,49 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import heroSuite from "@/assets/hero-suite.jpg";
 import projectVerdant from "@/assets/project-verdant.jpg";
 import projectNeon from "@/assets/project-neon.jpg";
 import controlSurface from "@/assets/control-surface.jpg";
 import ctaCamera from "@/assets/cta-camera.jpg";
 import { Section, Eyebrow } from "@/components/site/Section";
+
+const heroFrames = [
+  heroSuite,
+  "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1920&q=80&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1920&q=80&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=1920&q=80&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1920&q=80&auto=format&fit=crop",
+];
+
+function HeroCrossfade() {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    heroFrames.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+    const t = setInterval(() => setI((n) => (n + 1) % heroFrames.length), 6500);
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {heroFrames.map((src, idx) => (
+        <img
+          key={src}
+          src={src}
+          alt=""
+          aria-hidden={idx !== i}
+          className={[
+            "absolute inset-0 w-full h-full object-cover transition-opacity ease-in-out duration-[2200ms]",
+            idx === i ? "opacity-55 scale-105" : "opacity-0 scale-100",
+            "transition-transform",
+          ].join(" ")}
+          style={{ transitionProperty: "opacity, transform", transitionDuration: "2200ms, 8000ms" }}
+        />
+      ))}
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -116,13 +155,7 @@ function HomePage() {
     <div className="bg-canvas">
       {/* ───────────────────── Hero ───────────────────── */}
       <section className="relative h-dvh min-h-[720px] flex flex-col justify-end px-6 lg:px-10 pb-16 lg:pb-20 overflow-hidden">
-        <img
-          src={heroSuite}
-          alt="A professional cinematic colour grading suite illuminated by a calibrated reference monitor"
-          width={1920}
-          height={1080}
-          className="absolute inset-0 w-full h-full object-cover opacity-55 reveal-slow"
-        />
+        <HeroCrossfade />
         <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/30 to-canvas/60" />
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-canvas/80 to-transparent" />
 

@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { setNavHoverImage, navHoverImages } from "@/lib/nav-hover";
 
 const links = [
   { to: "/about", label: "About" },
@@ -45,11 +46,17 @@ export function Nav() {
             </span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-10">
+          <div
+            className="hidden lg:flex items-center gap-10"
+            onMouseLeave={() => setNavHoverImage(null)}
+          >
             {links.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
+                onMouseEnter={() => setNavHoverImage(navHoverImages[l.to] ?? null)}
+                onFocus={() => setNavHoverImage(navHoverImages[l.to] ?? null)}
+                onBlur={() => setNavHoverImage(null)}
                 className="text-[11px] font-medium uppercase tracking-[0.2em] text-muted hover:text-prime transition-colors"
                 activeProps={{ className: "text-prime" }}
               >

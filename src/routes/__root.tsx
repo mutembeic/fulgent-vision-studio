@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Nav } from "../components/site/Nav";
+import { NavHoverBackdrop } from "../components/site/NavHoverBackdrop";
 import { Footer } from "../components/site/Footer";
 
 function NotFoundComponent() {
@@ -134,9 +135,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-dvh bg-canvas text-prime flex flex-col">
+      <div className="min-h-dvh bg-canvas text-prime flex flex-col relative">
+        <NavHoverBackdrop />
         <Nav />
-        <main className="flex-1">
+        <main className="flex-1 relative z-10">
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
         </main>
