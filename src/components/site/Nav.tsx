@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { setNavHoverImage, navHoverImages } from "@/lib/nav-hover";
 
 const links = [
   { to: "/about", label: "About" },
