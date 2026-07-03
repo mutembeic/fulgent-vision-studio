@@ -116,13 +116,7 @@ function HomePage() {
     <div className="bg-canvas">
       {/* ───────────────────── Hero ───────────────────── */}
       <section className="relative h-dvh min-h-[720px] flex flex-col justify-end px-6 lg:px-10 pb-16 lg:pb-20 overflow-hidden">
-        <img
-          src={heroSuite}
-          alt="A professional cinematic colour grading suite illuminated by a calibrated reference monitor"
-          width={1920}
-          height={1080}
-          className="absolute inset-0 w-full h-full object-cover opacity-55 reveal-slow"
-        />
+        <HeroCrossfade />
         <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/30 to-canvas/60" />
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-canvas/80 to-transparent" />
 
