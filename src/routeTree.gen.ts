@@ -32,6 +32,7 @@ import { Route as AdminTeamRouteImport } from './routes/admin.team'
 import { Route as AdminStudioRouteImport } from './routes/admin.studio'
 import { Route as AdminProjectsRouteImport } from './routes/admin.projects'
 import { Route as AdminProductionRouteImport } from './routes/admin.production'
+import { Route as AdminFinanceRouteImport } from './routes/admin.finance'
 import { Route as AdminClientsRouteImport } from './routes/admin.clients'
 import { Route as DashboardProjectsIndexRouteImport } from './routes/dashboard.projects.index'
 import { Route as DashboardProjectsSlugRouteImport } from './routes/dashboard.projects.$slug'
@@ -151,6 +152,11 @@ const AdminProductionRoute = AdminProductionRouteImport.update({
   path: '/production',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminFinanceRoute = AdminFinanceRouteImport.update({
+  id: '/finance',
+  path: '/finance',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminClientsRoute = AdminClientsRouteImport.update({
   id: '/clients',
   path: '/clients',
@@ -179,6 +185,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/clients': typeof AdminClientsRoute
+  '/admin/finance': typeof AdminFinanceRoute
   '/admin/production': typeof AdminProductionRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/studio': typeof AdminStudioRoute
@@ -205,6 +212,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/clients': typeof AdminClientsRoute
+  '/admin/finance': typeof AdminFinanceRoute
   '/admin/production': typeof AdminProductionRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/studio': typeof AdminStudioRoute
@@ -234,6 +242,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/clients': typeof AdminClientsRoute
+  '/admin/finance': typeof AdminFinanceRoute
   '/admin/production': typeof AdminProductionRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/studio': typeof AdminStudioRoute
@@ -264,6 +273,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/admin/clients'
+    | '/admin/finance'
     | '/admin/production'
     | '/admin/projects'
     | '/admin/studio'
@@ -290,6 +300,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/admin/clients'
+    | '/admin/finance'
     | '/admin/production'
     | '/admin/projects'
     | '/admin/studio'
@@ -318,6 +329,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/admin/clients'
+    | '/admin/finance'
     | '/admin/production'
     | '/admin/projects'
     | '/admin/studio'
@@ -511,6 +523,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminProductionRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/finance': {
+      id: '/admin/finance'
+      path: '/finance'
+      fullPath: '/admin/finance'
+      preLoaderRoute: typeof AdminFinanceRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/clients': {
       id: '/admin/clients'
       path: '/clients'
@@ -537,6 +556,7 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminClientsRoute: typeof AdminClientsRoute
+  AdminFinanceRoute: typeof AdminFinanceRoute
   AdminProductionRoute: typeof AdminProductionRoute
   AdminProjectsRoute: typeof AdminProjectsRoute
   AdminStudioRoute: typeof AdminStudioRoute
@@ -546,6 +566,7 @@ interface AdminRouteChildren {
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminClientsRoute: AdminClientsRoute,
+  AdminFinanceRoute: AdminFinanceRoute,
   AdminProductionRoute: AdminProductionRoute,
   AdminProjectsRoute: AdminProjectsRoute,
   AdminStudioRoute: AdminStudioRoute,
