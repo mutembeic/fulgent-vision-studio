@@ -30,6 +30,7 @@ import { Route as DashboardDocumentsRouteImport } from './routes/dashboard.docum
 import { Route as DashboardDeliverablesRouteImport } from './routes/dashboard.deliverables'
 import { Route as AdminTeamRouteImport } from './routes/admin.team'
 import { Route as AdminStudioRouteImport } from './routes/admin.studio'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminReportsRouteImport } from './routes/admin.reports'
 import { Route as AdminProjectsRouteImport } from './routes/admin.projects'
 import { Route as AdminProductionRouteImport } from './routes/admin.production'
@@ -144,6 +145,11 @@ const AdminStudioRoute = AdminStudioRouteImport.update({
   path: '/studio',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminReportsRoute = AdminReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
@@ -202,6 +208,7 @@ export interface FileRoutesByFullPath {
   '/admin/production': typeof AdminProductionRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/reports': typeof AdminReportsRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/studio': typeof AdminStudioRoute
   '/admin/team': typeof AdminTeamRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
@@ -231,6 +238,7 @@ export interface FileRoutesByTo {
   '/admin/production': typeof AdminProductionRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/reports': typeof AdminReportsRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/studio': typeof AdminStudioRoute
   '/admin/team': typeof AdminTeamRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
@@ -263,6 +271,7 @@ export interface FileRoutesById {
   '/admin/production': typeof AdminProductionRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/reports': typeof AdminReportsRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/studio': typeof AdminStudioRoute
   '/admin/team': typeof AdminTeamRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
@@ -296,6 +305,7 @@ export interface FileRouteTypes {
     | '/admin/production'
     | '/admin/projects'
     | '/admin/reports'
+    | '/admin/settings'
     | '/admin/studio'
     | '/admin/team'
     | '/dashboard/deliverables'
@@ -325,6 +335,7 @@ export interface FileRouteTypes {
     | '/admin/production'
     | '/admin/projects'
     | '/admin/reports'
+    | '/admin/settings'
     | '/admin/studio'
     | '/admin/team'
     | '/dashboard/deliverables'
@@ -356,6 +367,7 @@ export interface FileRouteTypes {
     | '/admin/production'
     | '/admin/projects'
     | '/admin/reports'
+    | '/admin/settings'
     | '/admin/studio'
     | '/admin/team'
     | '/dashboard/deliverables'
@@ -533,6 +545,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminStudioRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/reports': {
       id: '/admin/reports'
       path: '/reports'
@@ -599,6 +618,7 @@ interface AdminRouteChildren {
   AdminProductionRoute: typeof AdminProductionRoute
   AdminProjectsRoute: typeof AdminProjectsRoute
   AdminReportsRoute: typeof AdminReportsRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
   AdminStudioRoute: typeof AdminStudioRoute
   AdminTeamRoute: typeof AdminTeamRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -611,6 +631,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminProductionRoute: AdminProductionRoute,
   AdminProjectsRoute: AdminProjectsRoute,
   AdminReportsRoute: AdminReportsRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
   AdminStudioRoute: AdminStudioRoute,
   AdminTeamRoute: AdminTeamRoute,
   AdminIndexRoute: AdminIndexRoute,
