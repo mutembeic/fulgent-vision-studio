@@ -22,6 +22,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as DashboardReviewsRouteImport } from './routes/dashboard.reviews'
 import { Route as DashboardMessagesRouteImport } from './routes/dashboard.messages'
+import { Route as DashboardInvoicesRouteImport } from './routes/dashboard.invoices'
 import { Route as DashboardDocumentsRouteImport } from './routes/dashboard.documents'
 import { Route as DashboardDeliverablesRouteImport } from './routes/dashboard.deliverables'
 import { Route as DashboardProjectsIndexRouteImport } from './routes/dashboard.projects.index'
@@ -92,6 +93,11 @@ const DashboardMessagesRoute = DashboardMessagesRouteImport.update({
   path: '/messages',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardInvoicesRoute = DashboardInvoicesRouteImport.update({
+  id: '/invoices',
+  path: '/invoices',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardDocumentsRoute = DashboardDocumentsRouteImport.update({
   id: '/documents',
   path: '/documents',
@@ -126,6 +132,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
+  '/dashboard/invoices': typeof DashboardInvoicesRoute
   '/dashboard/messages': typeof DashboardMessagesRoute
   '/dashboard/reviews': typeof DashboardReviewsRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -144,6 +151,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
+  '/dashboard/invoices': typeof DashboardInvoicesRoute
   '/dashboard/messages': typeof DashboardMessagesRoute
   '/dashboard/reviews': typeof DashboardReviewsRoute
   '/dashboard': typeof DashboardIndexRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
+  '/dashboard/invoices': typeof DashboardInvoicesRoute
   '/dashboard/messages': typeof DashboardMessagesRoute
   '/dashboard/reviews': typeof DashboardReviewsRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -185,6 +194,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/dashboard/deliverables'
     | '/dashboard/documents'
+    | '/dashboard/invoices'
     | '/dashboard/messages'
     | '/dashboard/reviews'
     | '/dashboard/'
@@ -203,6 +213,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/dashboard/deliverables'
     | '/dashboard/documents'
+    | '/dashboard/invoices'
     | '/dashboard/messages'
     | '/dashboard/reviews'
     | '/dashboard'
@@ -222,6 +233,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/dashboard/deliverables'
     | '/dashboard/documents'
+    | '/dashboard/invoices'
     | '/dashboard/messages'
     | '/dashboard/reviews'
     | '/dashboard/'
@@ -335,6 +347,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardMessagesRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/invoices': {
+      id: '/dashboard/invoices'
+      path: '/invoices'
+      fullPath: '/dashboard/invoices'
+      preLoaderRoute: typeof DashboardInvoicesRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/documents': {
       id: '/dashboard/documents'
       path: '/documents'
@@ -369,6 +388,7 @@ declare module '@tanstack/react-router' {
 interface DashboardRouteChildren {
   DashboardDeliverablesRoute: typeof DashboardDeliverablesRoute
   DashboardDocumentsRoute: typeof DashboardDocumentsRoute
+  DashboardInvoicesRoute: typeof DashboardInvoicesRoute
   DashboardMessagesRoute: typeof DashboardMessagesRoute
   DashboardReviewsRoute: typeof DashboardReviewsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
@@ -379,6 +399,7 @@ interface DashboardRouteChildren {
 const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardDeliverablesRoute: DashboardDeliverablesRoute,
   DashboardDocumentsRoute: DashboardDocumentsRoute,
+  DashboardInvoicesRoute: DashboardInvoicesRoute,
   DashboardMessagesRoute: DashboardMessagesRoute,
   DashboardReviewsRoute: DashboardReviewsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
