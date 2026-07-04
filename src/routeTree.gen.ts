@@ -28,6 +28,7 @@ import { Route as DashboardMessagesRouteImport } from './routes/dashboard.messag
 import { Route as DashboardInvoicesRouteImport } from './routes/dashboard.invoices'
 import { Route as DashboardDocumentsRouteImport } from './routes/dashboard.documents'
 import { Route as DashboardDeliverablesRouteImport } from './routes/dashboard.deliverables'
+import { Route as AdminProjectsRouteImport } from './routes/admin.projects'
 import { Route as DashboardProjectsIndexRouteImport } from './routes/dashboard.projects.index'
 import { Route as DashboardProjectsSlugRouteImport } from './routes/dashboard.projects.$slug'
 
@@ -126,6 +127,11 @@ const DashboardDeliverablesRoute = DashboardDeliverablesRouteImport.update({
   path: '/deliverables',
   getParentRoute: () => DashboardRoute,
 } as any)
+const AdminProjectsRoute = AdminProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => AdminRoute,
+} as any)
 const DashboardProjectsIndexRoute = DashboardProjectsIndexRouteImport.update({
   id: '/projects/',
   path: '/projects/',
@@ -148,6 +154,7 @@ export interface FileRoutesByFullPath {
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/projects': typeof AdminProjectsRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
   '/dashboard/invoices': typeof DashboardInvoicesRoute
@@ -169,6 +176,7 @@ export interface FileRoutesByTo {
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/projects': typeof AdminProjectsRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
   '/dashboard/invoices': typeof DashboardInvoicesRoute
@@ -193,6 +201,7 @@ export interface FileRoutesById {
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/projects': typeof AdminProjectsRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
   '/dashboard/invoices': typeof DashboardInvoicesRoute
@@ -218,6 +227,7 @@ export interface FileRouteTypes {
     | '/process'
     | '/services'
     | '/sitemap.xml'
+    | '/admin/projects'
     | '/dashboard/deliverables'
     | '/dashboard/documents'
     | '/dashboard/invoices'
@@ -239,6 +249,7 @@ export interface FileRouteTypes {
     | '/process'
     | '/services'
     | '/sitemap.xml'
+    | '/admin/projects'
     | '/dashboard/deliverables'
     | '/dashboard/documents'
     | '/dashboard/invoices'
@@ -262,6 +273,7 @@ export interface FileRouteTypes {
     | '/process'
     | '/services'
     | '/sitemap.xml'
+    | '/admin/projects'
     | '/dashboard/deliverables'
     | '/dashboard/documents'
     | '/dashboard/invoices'
@@ -423,6 +435,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardDeliverablesRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/admin/projects': {
+      id: '/admin/projects'
+      path: '/projects'
+      fullPath: '/admin/projects'
+      preLoaderRoute: typeof AdminProjectsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/dashboard/projects/': {
       id: '/dashboard/projects/'
       path: '/projects'
@@ -441,10 +460,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminProjectsRoute: typeof AdminProjectsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminProjectsRoute: AdminProjectsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
