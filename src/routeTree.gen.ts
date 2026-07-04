@@ -20,6 +20,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardReviewsRouteImport } from './routes/dashboard.reviews'
 import { Route as DashboardProjectsIndexRouteImport } from './routes/dashboard.projects.index'
 import { Route as DashboardProjectsSlugRouteImport } from './routes/dashboard.projects.$slug'
 
@@ -78,6 +79,11 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardReviewsRoute = DashboardReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardProjectsIndexRoute = DashboardProjectsIndexRouteImport.update({
   id: '/projects/',
   path: '/projects/',
@@ -100,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/dashboard/reviews': typeof DashboardReviewsRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/projects/$slug': typeof DashboardProjectsSlugRoute
   '/dashboard/projects/': typeof DashboardProjectsIndexRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByTo {
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/dashboard/reviews': typeof DashboardReviewsRoute
   '/dashboard': typeof DashboardIndexRoute
   '/dashboard/projects/$slug': typeof DashboardProjectsSlugRoute
   '/dashboard/projects': typeof DashboardProjectsIndexRoute
@@ -130,6 +138,7 @@ export interface FileRoutesById {
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/dashboard/reviews': typeof DashboardReviewsRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/projects/$slug': typeof DashboardProjectsSlugRoute
   '/dashboard/projects/': typeof DashboardProjectsIndexRoute
@@ -147,6 +156,7 @@ export interface FileRouteTypes {
     | '/process'
     | '/services'
     | '/sitemap.xml'
+    | '/dashboard/reviews'
     | '/dashboard/'
     | '/dashboard/projects/$slug'
     | '/dashboard/projects/'
@@ -161,6 +171,7 @@ export interface FileRouteTypes {
     | '/process'
     | '/services'
     | '/sitemap.xml'
+    | '/dashboard/reviews'
     | '/dashboard'
     | '/dashboard/projects/$slug'
     | '/dashboard/projects'
@@ -176,6 +187,7 @@ export interface FileRouteTypes {
     | '/process'
     | '/services'
     | '/sitemap.xml'
+    | '/dashboard/reviews'
     | '/dashboard/'
     | '/dashboard/projects/$slug'
     | '/dashboard/projects/'
@@ -273,6 +285,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/reviews': {
+      id: '/dashboard/reviews'
+      path: '/reviews'
+      fullPath: '/dashboard/reviews'
+      preLoaderRoute: typeof DashboardReviewsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/projects/': {
       id: '/dashboard/projects/'
       path: '/projects'
@@ -291,12 +310,14 @@ declare module '@tanstack/react-router' {
 }
 
 interface DashboardRouteChildren {
+  DashboardReviewsRoute: typeof DashboardReviewsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
   DashboardProjectsSlugRoute: typeof DashboardProjectsSlugRoute
   DashboardProjectsIndexRoute: typeof DashboardProjectsIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardReviewsRoute: DashboardReviewsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
   DashboardProjectsSlugRoute: DashboardProjectsSlugRoute,
   DashboardProjectsIndexRoute: DashboardProjectsIndexRoute,
