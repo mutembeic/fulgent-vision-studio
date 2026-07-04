@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowDownRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import heroSuite from "@/assets/hero-suite.jpg";
 import projectVerdant from "@/assets/project-verdant.jpg";
@@ -35,7 +36,7 @@ function HeroCrossfade() {
           aria-hidden={idx !== i}
           className={[
             "absolute inset-0 w-full h-full object-cover transition-opacity ease-in-out duration-[2200ms]",
-            idx === i ? "opacity-55 scale-105" : "opacity-0 scale-100",
+            idx === i ? "opacity-100 scale-105" : "opacity-0 scale-100",
             "transition-transform",
           ].join(" ")}
           style={{ transitionProperty: "opacity, transform", transitionDuration: "2200ms, 8000ms" }}
@@ -153,47 +154,30 @@ const awards = [
 function HomePage() {
   return (
     <div className="bg-canvas">
-      {/* ───────────────────── Hero ───────────────────── */}
-      <section className="relative h-dvh min-h-[720px] flex flex-col justify-end px-6 lg:px-10 pb-16 lg:pb-20 overflow-hidden">
+      {/* Hero */}
+      <section className="relative h-dvh min-h-[620px] overflow-hidden">
         <HeroCrossfade />
-        <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/30 to-canvas/60" />
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-canvas/80 to-transparent" />
+        <div className="absolute inset-0 bg-canvas/10" />
+      </section>
 
-        <div className="relative z-10 w-full mx-auto max-w-[1480px] reveal">
-          <div className="mb-10 flex flex-col gap-4">
-            <span className="eyebrow text-accent">Nairobi · Global Post House</span>
-            <h1 className="font-serif font-medium text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.92] max-w-[18ch] kerning-tight text-balance">
-              Crafting the <em className="font-normal italic">Final</em> Frame.
-            </h1>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] items-end gap-8 border-t border-hairline pt-8">
-            <p className="font-sans text-base sm:text-lg text-muted max-w-[44ch] leading-relaxed">
-              Specialists in high-end colour grading and finishing for narrative
-              feature films, commercial campaigns and music video artistry.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-3 bg-accent text-canvas px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.25em] hover:brightness-110 transition"
-              >
-                Book Consultation
-              </Link>
-              <button
-                type="button"
-                className="inline-flex items-center gap-3 border border-prime/20 px-6 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] hover:bg-prime/5 transition"
-              >
-                <span className="size-2 rounded-full bg-accent" />
-                Watch Showreel
-              </button>
-            </div>
-          </div>
+      {/* Brand reveal */}
+      <section className="relative min-h-dvh overflow-hidden bg-canvas px-6 lg:px-10 py-24 lg:py-32 flex items-center">
+        <div className="pointer-events-none absolute inset-0 opacity-70">
+          <HeroCrossfade />
         </div>
-
-        {/* scroll cue */}
-        <div className="absolute bottom-6 right-6 hidden md:flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-muted">
-          <span>Scroll</span>
-          <span className="block h-px w-10 bg-muted/60" />
+        <div className="absolute inset-0 bg-canvas/70 mix-blend-multiply" />
+        <div className="relative z-10 w-full">
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-5">
+            <h1 className="fulgent-reveal-title max-w-[12ch] font-sans text-[clamp(3.8rem,16vw,17rem)] uppercase leading-[0.78]">
+              <span data-text="Fulgent">Fulgent</span>
+              <span data-text="Post House">Post House</span>
+            </h1>
+            <ArrowDownRight
+              className="mt-4 size-12 md:size-24 text-prime/80 mix-blend-difference"
+              strokeWidth={1}
+              aria-hidden
+            />
+          </div>
         </div>
       </section>
 

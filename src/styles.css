@@ -135,3 +135,31 @@
 @utility reveal-slow {
   animation: reveal-fade 1.6s ease-out both;
 }
+
+@layer components {
+  .fulgent-reveal-title {
+    letter-spacing: 0;
+    color: transparent;
+    -webkit-text-stroke: clamp(1px, 0.16vw, 2.5px) rgba(250, 250, 250, 0.76);
+    text-shadow: 0 0 40px rgba(250, 250, 250, 0.08);
+    mix-blend-mode: difference;
+  }
+
+  .fulgent-reveal-title span {
+    display: block;
+    position: relative;
+    width: fit-content;
+  }
+
+  .fulgent-reveal-title span::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    color: rgba(250, 250, 250, 0.08);
+    -webkit-text-stroke: 0;
+    background: linear-gradient(90deg, rgba(250, 250, 250, 0.72), rgba(183, 140, 69, 0.34));
+    background-clip: text;
+    -webkit-background-clip: text;
+    mix-blend-mode: exclusion;
+  }
+}
