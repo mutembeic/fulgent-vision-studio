@@ -30,6 +30,7 @@ import { Route as DashboardDocumentsRouteImport } from './routes/dashboard.docum
 import { Route as DashboardDeliverablesRouteImport } from './routes/dashboard.deliverables'
 import { Route as AdminTeamRouteImport } from './routes/admin.team'
 import { Route as AdminStudioRouteImport } from './routes/admin.studio'
+import { Route as AdminReportsRouteImport } from './routes/admin.reports'
 import { Route as AdminProjectsRouteImport } from './routes/admin.projects'
 import { Route as AdminProductionRouteImport } from './routes/admin.production'
 import { Route as AdminFinanceRouteImport } from './routes/admin.finance'
@@ -143,6 +144,11 @@ const AdminStudioRoute = AdminStudioRouteImport.update({
   path: '/studio',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminReportsRoute = AdminReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminProjectsRoute = AdminProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
@@ -195,6 +201,7 @@ export interface FileRoutesByFullPath {
   '/admin/finance': typeof AdminFinanceRoute
   '/admin/production': typeof AdminProductionRoute
   '/admin/projects': typeof AdminProjectsRoute
+  '/admin/reports': typeof AdminReportsRoute
   '/admin/studio': typeof AdminStudioRoute
   '/admin/team': typeof AdminTeamRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
@@ -223,6 +230,7 @@ export interface FileRoutesByTo {
   '/admin/finance': typeof AdminFinanceRoute
   '/admin/production': typeof AdminProductionRoute
   '/admin/projects': typeof AdminProjectsRoute
+  '/admin/reports': typeof AdminReportsRoute
   '/admin/studio': typeof AdminStudioRoute
   '/admin/team': typeof AdminTeamRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
@@ -254,6 +262,7 @@ export interface FileRoutesById {
   '/admin/finance': typeof AdminFinanceRoute
   '/admin/production': typeof AdminProductionRoute
   '/admin/projects': typeof AdminProjectsRoute
+  '/admin/reports': typeof AdminReportsRoute
   '/admin/studio': typeof AdminStudioRoute
   '/admin/team': typeof AdminTeamRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
@@ -286,6 +295,7 @@ export interface FileRouteTypes {
     | '/admin/finance'
     | '/admin/production'
     | '/admin/projects'
+    | '/admin/reports'
     | '/admin/studio'
     | '/admin/team'
     | '/dashboard/deliverables'
@@ -314,6 +324,7 @@ export interface FileRouteTypes {
     | '/admin/finance'
     | '/admin/production'
     | '/admin/projects'
+    | '/admin/reports'
     | '/admin/studio'
     | '/admin/team'
     | '/dashboard/deliverables'
@@ -344,6 +355,7 @@ export interface FileRouteTypes {
     | '/admin/finance'
     | '/admin/production'
     | '/admin/projects'
+    | '/admin/reports'
     | '/admin/studio'
     | '/admin/team'
     | '/dashboard/deliverables'
@@ -521,6 +533,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminStudioRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/reports': {
+      id: '/admin/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AdminReportsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/projects': {
       id: '/admin/projects'
       path: '/projects'
@@ -579,6 +598,7 @@ interface AdminRouteChildren {
   AdminFinanceRoute: typeof AdminFinanceRoute
   AdminProductionRoute: typeof AdminProductionRoute
   AdminProjectsRoute: typeof AdminProjectsRoute
+  AdminReportsRoute: typeof AdminReportsRoute
   AdminStudioRoute: typeof AdminStudioRoute
   AdminTeamRoute: typeof AdminTeamRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -590,6 +610,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminFinanceRoute: AdminFinanceRoute,
   AdminProductionRoute: AdminProductionRoute,
   AdminProjectsRoute: AdminProjectsRoute,
+  AdminReportsRoute: AdminReportsRoute,
   AdminStudioRoute: AdminStudioRoute,
   AdminTeamRoute: AdminTeamRoute,
   AdminIndexRoute: AdminIndexRoute,
