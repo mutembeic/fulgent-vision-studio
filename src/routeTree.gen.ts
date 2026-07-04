@@ -29,6 +29,7 @@ import { Route as DashboardInvoicesRouteImport } from './routes/dashboard.invoic
 import { Route as DashboardDocumentsRouteImport } from './routes/dashboard.documents'
 import { Route as DashboardDeliverablesRouteImport } from './routes/dashboard.deliverables'
 import { Route as AdminTeamRouteImport } from './routes/admin.team'
+import { Route as AdminStudioRouteImport } from './routes/admin.studio'
 import { Route as AdminProjectsRouteImport } from './routes/admin.projects'
 import { Route as AdminProductionRouteImport } from './routes/admin.production'
 import { Route as AdminClientsRouteImport } from './routes/admin.clients'
@@ -135,6 +136,11 @@ const AdminTeamRoute = AdminTeamRouteImport.update({
   path: '/team',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminStudioRoute = AdminStudioRouteImport.update({
+  id: '/studio',
+  path: '/studio',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminProjectsRoute = AdminProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
@@ -175,6 +181,7 @@ export interface FileRoutesByFullPath {
   '/admin/clients': typeof AdminClientsRoute
   '/admin/production': typeof AdminProductionRoute
   '/admin/projects': typeof AdminProjectsRoute
+  '/admin/studio': typeof AdminStudioRoute
   '/admin/team': typeof AdminTeamRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
@@ -200,6 +207,7 @@ export interface FileRoutesByTo {
   '/admin/clients': typeof AdminClientsRoute
   '/admin/production': typeof AdminProductionRoute
   '/admin/projects': typeof AdminProjectsRoute
+  '/admin/studio': typeof AdminStudioRoute
   '/admin/team': typeof AdminTeamRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
@@ -228,6 +236,7 @@ export interface FileRoutesById {
   '/admin/clients': typeof AdminClientsRoute
   '/admin/production': typeof AdminProductionRoute
   '/admin/projects': typeof AdminProjectsRoute
+  '/admin/studio': typeof AdminStudioRoute
   '/admin/team': typeof AdminTeamRoute
   '/dashboard/deliverables': typeof DashboardDeliverablesRoute
   '/dashboard/documents': typeof DashboardDocumentsRoute
@@ -257,6 +266,7 @@ export interface FileRouteTypes {
     | '/admin/clients'
     | '/admin/production'
     | '/admin/projects'
+    | '/admin/studio'
     | '/admin/team'
     | '/dashboard/deliverables'
     | '/dashboard/documents'
@@ -282,6 +292,7 @@ export interface FileRouteTypes {
     | '/admin/clients'
     | '/admin/production'
     | '/admin/projects'
+    | '/admin/studio'
     | '/admin/team'
     | '/dashboard/deliverables'
     | '/dashboard/documents'
@@ -309,6 +320,7 @@ export interface FileRouteTypes {
     | '/admin/clients'
     | '/admin/production'
     | '/admin/projects'
+    | '/admin/studio'
     | '/admin/team'
     | '/dashboard/deliverables'
     | '/dashboard/documents'
@@ -478,6 +490,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminTeamRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/studio': {
+      id: '/admin/studio'
+      path: '/studio'
+      fullPath: '/admin/studio'
+      preLoaderRoute: typeof AdminStudioRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/projects': {
       id: '/admin/projects'
       path: '/projects'
@@ -520,6 +539,7 @@ interface AdminRouteChildren {
   AdminClientsRoute: typeof AdminClientsRoute
   AdminProductionRoute: typeof AdminProductionRoute
   AdminProjectsRoute: typeof AdminProjectsRoute
+  AdminStudioRoute: typeof AdminStudioRoute
   AdminTeamRoute: typeof AdminTeamRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -528,6 +548,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminClientsRoute: AdminClientsRoute,
   AdminProductionRoute: AdminProductionRoute,
   AdminProjectsRoute: AdminProjectsRoute,
+  AdminStudioRoute: AdminStudioRoute,
   AdminTeamRoute: AdminTeamRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
