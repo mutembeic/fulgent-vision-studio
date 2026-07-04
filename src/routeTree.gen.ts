@@ -21,6 +21,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as DashboardReviewsRouteImport } from './routes/dashboard.reviews'
+import { Route as DashboardDeliverablesRouteImport } from './routes/dashboard.deliverables'
 import { Route as DashboardProjectsIndexRouteImport } from './routes/dashboard.projects.index'
 import { Route as DashboardProjectsSlugRouteImport } from './routes/dashboard.projects.$slug'
 
@@ -84,6 +85,11 @@ const DashboardReviewsRoute = DashboardReviewsRouteImport.update({
   path: '/reviews',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardDeliverablesRoute = DashboardDeliverablesRouteImport.update({
+  id: '/deliverables',
+  path: '/deliverables',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardProjectsIndexRoute = DashboardProjectsIndexRouteImport.update({
   id: '/projects/',
   path: '/projects/',
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/dashboard/deliverables': typeof DashboardDeliverablesRoute
   '/dashboard/reviews': typeof DashboardReviewsRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/projects/$slug': typeof DashboardProjectsSlugRoute
@@ -121,6 +128,7 @@ export interface FileRoutesByTo {
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/dashboard/deliverables': typeof DashboardDeliverablesRoute
   '/dashboard/reviews': typeof DashboardReviewsRoute
   '/dashboard': typeof DashboardIndexRoute
   '/dashboard/projects/$slug': typeof DashboardProjectsSlugRoute
@@ -138,6 +146,7 @@ export interface FileRoutesById {
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/dashboard/deliverables': typeof DashboardDeliverablesRoute
   '/dashboard/reviews': typeof DashboardReviewsRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/projects/$slug': typeof DashboardProjectsSlugRoute
@@ -156,6 +165,7 @@ export interface FileRouteTypes {
     | '/process'
     | '/services'
     | '/sitemap.xml'
+    | '/dashboard/deliverables'
     | '/dashboard/reviews'
     | '/dashboard/'
     | '/dashboard/projects/$slug'
@@ -171,6 +181,7 @@ export interface FileRouteTypes {
     | '/process'
     | '/services'
     | '/sitemap.xml'
+    | '/dashboard/deliverables'
     | '/dashboard/reviews'
     | '/dashboard'
     | '/dashboard/projects/$slug'
@@ -187,6 +198,7 @@ export interface FileRouteTypes {
     | '/process'
     | '/services'
     | '/sitemap.xml'
+    | '/dashboard/deliverables'
     | '/dashboard/reviews'
     | '/dashboard/'
     | '/dashboard/projects/$slug'
@@ -292,6 +304,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardReviewsRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/deliverables': {
+      id: '/dashboard/deliverables'
+      path: '/deliverables'
+      fullPath: '/dashboard/deliverables'
+      preLoaderRoute: typeof DashboardDeliverablesRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/projects/': {
       id: '/dashboard/projects/'
       path: '/projects'
@@ -310,6 +329,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface DashboardRouteChildren {
+  DashboardDeliverablesRoute: typeof DashboardDeliverablesRoute
   DashboardReviewsRoute: typeof DashboardReviewsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
   DashboardProjectsSlugRoute: typeof DashboardProjectsSlugRoute
@@ -317,6 +337,7 @@ interface DashboardRouteChildren {
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardDeliverablesRoute: DashboardDeliverablesRoute,
   DashboardReviewsRoute: DashboardReviewsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
   DashboardProjectsSlugRoute: DashboardProjectsSlugRoute,
