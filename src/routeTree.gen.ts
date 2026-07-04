@@ -20,6 +20,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as DashboardSupportRouteImport } from './routes/dashboard.support'
 import { Route as DashboardReviewsRouteImport } from './routes/dashboard.reviews'
 import { Route as DashboardProfileRouteImport } from './routes/dashboard.profile'
@@ -85,6 +86,11 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DashboardRoute,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
 const DashboardSupportRoute = DashboardSupportRouteImport.update({
   id: '/support',
   path: '/support',
@@ -134,7 +140,7 @@ const DashboardProjectsSlugRoute = DashboardProjectsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/login': typeof LoginRoute
@@ -149,6 +155,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/reviews': typeof DashboardReviewsRoute
   '/dashboard/support': typeof DashboardSupportRoute
+  '/admin/': typeof AdminIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/projects/$slug': typeof DashboardProjectsSlugRoute
   '/dashboard/projects/': typeof DashboardProjectsIndexRoute
@@ -156,7 +163,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/login': typeof LoginRoute
   '/portfolio': typeof PortfolioRoute
@@ -170,6 +176,7 @@ export interface FileRoutesByTo {
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/reviews': typeof DashboardReviewsRoute
   '/dashboard/support': typeof DashboardSupportRoute
+  '/admin': typeof AdminIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/dashboard/projects/$slug': typeof DashboardProjectsSlugRoute
   '/dashboard/projects': typeof DashboardProjectsIndexRoute
@@ -178,7 +185,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/login': typeof LoginRoute
@@ -193,6 +200,7 @@ export interface FileRoutesById {
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/reviews': typeof DashboardReviewsRoute
   '/dashboard/support': typeof DashboardSupportRoute
+  '/admin/': typeof AdminIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/projects/$slug': typeof DashboardProjectsSlugRoute
   '/dashboard/projects/': typeof DashboardProjectsIndexRoute
@@ -217,6 +225,7 @@ export interface FileRouteTypes {
     | '/dashboard/profile'
     | '/dashboard/reviews'
     | '/dashboard/support'
+    | '/admin/'
     | '/dashboard/'
     | '/dashboard/projects/$slug'
     | '/dashboard/projects/'
@@ -224,7 +233,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
-    | '/admin'
     | '/contact'
     | '/login'
     | '/portfolio'
@@ -238,6 +246,7 @@ export interface FileRouteTypes {
     | '/dashboard/profile'
     | '/dashboard/reviews'
     | '/dashboard/support'
+    | '/admin'
     | '/dashboard'
     | '/dashboard/projects/$slug'
     | '/dashboard/projects'
@@ -260,6 +269,7 @@ export interface FileRouteTypes {
     | '/dashboard/profile'
     | '/dashboard/reviews'
     | '/dashboard/support'
+    | '/admin/'
     | '/dashboard/'
     | '/dashboard/projects/$slug'
     | '/dashboard/projects/'
@@ -268,7 +278,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AdminRoute: typeof AdminRoute
+  AdminRoute: typeof AdminRouteWithChildren
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRouteWithChildren
   LoginRoute: typeof LoginRoute
@@ -357,6 +367,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/dashboard/support': {
       id: '/dashboard/support'
       path: '/support'
@@ -423,6 +440,16 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AdminRouteChildren {
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 interface DashboardRouteChildren {
   DashboardDeliverablesRoute: typeof DashboardDeliverablesRoute
   DashboardDocumentsRoute: typeof DashboardDocumentsRoute
@@ -456,7 +483,7 @@ const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AdminRoute: AdminRoute,
+  AdminRoute: AdminRouteWithChildren,
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRouteWithChildren,
   LoginRoute: LoginRoute,
