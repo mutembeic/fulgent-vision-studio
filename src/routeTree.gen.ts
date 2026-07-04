@@ -20,6 +20,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardSupportRouteImport } from './routes/dashboard.support'
 import { Route as DashboardReviewsRouteImport } from './routes/dashboard.reviews'
 import { Route as DashboardMessagesRouteImport } from './routes/dashboard.messages'
 import { Route as DashboardInvoicesRouteImport } from './routes/dashboard.invoices'
@@ -83,6 +84,11 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardSupportRoute = DashboardSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardReviewsRoute = DashboardReviewsRouteImport.update({
   id: '/reviews',
   path: '/reviews',
@@ -135,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/invoices': typeof DashboardInvoicesRoute
   '/dashboard/messages': typeof DashboardMessagesRoute
   '/dashboard/reviews': typeof DashboardReviewsRoute
+  '/dashboard/support': typeof DashboardSupportRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/projects/$slug': typeof DashboardProjectsSlugRoute
   '/dashboard/projects/': typeof DashboardProjectsIndexRoute
@@ -154,6 +161,7 @@ export interface FileRoutesByTo {
   '/dashboard/invoices': typeof DashboardInvoicesRoute
   '/dashboard/messages': typeof DashboardMessagesRoute
   '/dashboard/reviews': typeof DashboardReviewsRoute
+  '/dashboard/support': typeof DashboardSupportRoute
   '/dashboard': typeof DashboardIndexRoute
   '/dashboard/projects/$slug': typeof DashboardProjectsSlugRoute
   '/dashboard/projects': typeof DashboardProjectsIndexRoute
@@ -175,6 +183,7 @@ export interface FileRoutesById {
   '/dashboard/invoices': typeof DashboardInvoicesRoute
   '/dashboard/messages': typeof DashboardMessagesRoute
   '/dashboard/reviews': typeof DashboardReviewsRoute
+  '/dashboard/support': typeof DashboardSupportRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/projects/$slug': typeof DashboardProjectsSlugRoute
   '/dashboard/projects/': typeof DashboardProjectsIndexRoute
@@ -197,6 +206,7 @@ export interface FileRouteTypes {
     | '/dashboard/invoices'
     | '/dashboard/messages'
     | '/dashboard/reviews'
+    | '/dashboard/support'
     | '/dashboard/'
     | '/dashboard/projects/$slug'
     | '/dashboard/projects/'
@@ -216,6 +226,7 @@ export interface FileRouteTypes {
     | '/dashboard/invoices'
     | '/dashboard/messages'
     | '/dashboard/reviews'
+    | '/dashboard/support'
     | '/dashboard'
     | '/dashboard/projects/$slug'
     | '/dashboard/projects'
@@ -236,6 +247,7 @@ export interface FileRouteTypes {
     | '/dashboard/invoices'
     | '/dashboard/messages'
     | '/dashboard/reviews'
+    | '/dashboard/support'
     | '/dashboard/'
     | '/dashboard/projects/$slug'
     | '/dashboard/projects/'
@@ -333,6 +345,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/support': {
+      id: '/dashboard/support'
+      path: '/support'
+      fullPath: '/dashboard/support'
+      preLoaderRoute: typeof DashboardSupportRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/reviews': {
       id: '/dashboard/reviews'
       path: '/reviews'
@@ -391,6 +410,7 @@ interface DashboardRouteChildren {
   DashboardInvoicesRoute: typeof DashboardInvoicesRoute
   DashboardMessagesRoute: typeof DashboardMessagesRoute
   DashboardReviewsRoute: typeof DashboardReviewsRoute
+  DashboardSupportRoute: typeof DashboardSupportRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
   DashboardProjectsSlugRoute: typeof DashboardProjectsSlugRoute
   DashboardProjectsIndexRoute: typeof DashboardProjectsIndexRoute
@@ -402,6 +422,7 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardInvoicesRoute: DashboardInvoicesRoute,
   DashboardMessagesRoute: DashboardMessagesRoute,
   DashboardReviewsRoute: DashboardReviewsRoute,
+  DashboardSupportRoute: DashboardSupportRoute,
   DashboardIndexRoute: DashboardIndexRoute,
   DashboardProjectsSlugRoute: DashboardProjectsSlugRoute,
   DashboardProjectsIndexRoute: DashboardProjectsIndexRoute,
